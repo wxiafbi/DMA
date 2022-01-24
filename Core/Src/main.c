@@ -55,6 +55,7 @@ uint8_t DMA_RX[100];
 /* USER CODE BEGIN PV */
 uint8_t pv[] = "xiaojiu\r\n";
 uint8_t pv1[] = "XIAOJIU\r\n";
+uint8_t dma_rx[RXBUFFERSIZE] = {0};
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -149,8 +150,7 @@ void SystemClock_Config(void)
   }
   /** Initializes the CPU, AHB and APB buses clocks
   */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
@@ -172,7 +172,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
            the HAL_UART_TxCpltCallback could be implemented in the user file
    */
 
-  if (Uart1_Rx_Cnt >= 255) 
+  if (Uart1_Rx_Cnt >= 255)
   {
     Uart1_Rx_Cnt = 0;
     memset(RxBuffer, 0x00, sizeof(RxBuffer));
@@ -180,20 +180,21 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
   }
   else
   {
-    RxBuffer[Uart1_Rx_Cnt++] = aRxBuffer; 
+    RxBuffer[Uart1_Rx_Cnt++] = aRxBuffer;
 
-    if ((RxBuffer[Uart1_Rx_Cnt - 1] == 0x0A) && (RxBuffer[Uart1_Rx_Cnt - 2] == 0x0D)) 
+    if ((RxBuffer[Uart1_Rx_Cnt - 1] == 0x0A) && (RxBuffer[Uart1_Rx_Cnt - 2] == 0x0D))
     {
-      HAL_UART_Transmit(&huart1, (uint8_t *)&RxBuffer, Uart1_Rx_Cnt, 0xFFFF); 
+      HAL_UART_Transmit(&huart1, (uint8_t *)&RxBuffer, Uart1_Rx_Cnt, 0xFFFF);
+      HAL_DMA_Start(&hdma_memtomem_dma1_channel1, (uint32_t)&RxBuffer, (uint32_t)&dma_rx, Uart1_Rx_Cnt);
+      printf("%c", dma_rx[Uart1_Rx_Cnt - 3]);
       while (HAL_UART_GetState(&huart1) == HAL_UART_STATE_BUSY_TX)
-        ; 
+        ;
       Uart1_Rx_Cnt = 0;
-      memset(RxBuffer, 0x00, sizeof(RxBuffer)); 
+      memset(RxBuffer, 0x00, sizeof(RxBuffer));
     }
   }
 
-  HAL_UART_Receive_IT(&huart1, (uint8_t *)&aRxBuffer, 1); 
-
+  HAL_UART_Receive_IT(&huart1, (uint8_t *)&aRxBuffer, 1);
 }
 #else
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
@@ -219,7 +220,7 @@ void Error_Handler(void)
   /* USER CODE END Error_Handler_Debug */
 }
 
-#ifdef  USE_FULL_ASSERT
+#ifdef USE_FULL_ASSERT
 /**
   * @brief  Reports the name of the source file and the source line number
   *         where the assert_param error has occurred.
@@ -235,4 +236,3 @@ void assert_failed(uint8_t *file, uint32_t line)
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
-

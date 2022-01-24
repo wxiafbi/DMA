@@ -566,3 +566,75 @@
 [2022-01-24 21:38:09]	[done]
 	build successfully !
 
+[2022-01-24 22:06:58]	compilation failed at : "e:\jiujiu\DMA\Core\Src\main.c", exit code: 1
+  at unify_builder.Program.compileByMulThread (System.Int32 thrNum, unify_builder.CmdGenerator+CmdInfo[] cmds, System.Collections.Generic.List`1[T] errLogs) [0x00104] in <67d11e1b30504dd6babd321425698ba1>:0 
+  at unify_builder.Program.Main (System.String[] args) [0x018f4] in <67d11e1b30504dd6babd321425698ba1>:0 
+---
+".\Core\Src\main.c", line 189: Error:  #167: argument of type "char (*)[256]" is incompatible with parameter of type "uint32_t"
+        HAL_DMA_Start(&hdma_memtomem_dma1_channel1,&RxBuffer,&dma_rx,Uart1_Rx_Cnt);
+                                                   ^
+".\Core\Src\main.c", line 189: Error:  #167: argument of type "uint8_t (*)[256]" is incompatible with parameter of type "uint32_t"
+        HAL_DMA_Start(&hdma_memtomem_dma1_channel1,&RxBuffer,&dma_rx,Uart1_Rx_Cnt);
+                                                             ^
+.\Core\Src\main.c: 0 warnings, 2 errors
+
+[2022-01-24 22:07:18]	compilation failed at : "e:\jiujiu\DMA\Core\Src\main.c", exit code: 1
+  at unify_builder.Program.compileByMulThread (System.Int32 thrNum, unify_builder.CmdGenerator+CmdInfo[] cmds, System.Collections.Generic.List`1[T] errLogs) [0x00104] in <67d11e1b30504dd6babd321425698ba1>:0 
+  at unify_builder.Program.Main (System.String[] args) [0x018f4] in <67d11e1b30504dd6babd321425698ba1>:0 
+---
+".\Core\Src\main.c", line 189: Error:  #167: argument of type "char *" is incompatible with parameter of type "uint32_t"
+        HAL_DMA_Start(&hdma_memtomem_dma1_channel1,RxBuffer,dma_rx,Uart1_Rx_Cnt);
+                                                   ^
+".\Core\Src\main.c", line 189: Error:  #167: argument of type "uint8_t *" is incompatible with parameter of type "uint32_t"
+        HAL_DMA_Start(&hdma_memtomem_dma1_channel1,RxBuffer,dma_rx,Uart1_Rx_Cnt);
+                                                            ^
+.\Core\Src\main.c: 0 warnings, 2 errors
+
+[2022-01-24 22:08:12]	compilation failed at : "e:\jiujiu\DMA\Core\Src\main.c", exit code: 1
+  at unify_builder.Program.compileByMulThread (System.Int32 thrNum, unify_builder.CmdGenerator+CmdInfo[] cmds, System.Collections.Generic.List`1[T] errLogs) [0x00104] in <67d11e1b30504dd6babd321425698ba1>:0 
+  at unify_builder.Program.Main (System.String[] args) [0x018f4] in <67d11e1b30504dd6babd321425698ba1>:0 
+---
+".\Core\Src\main.c", line 189: Error:  #167: argument of type "char *" is incompatible with parameter of type "uint32_t"
+        HAL_DMA_Start(&hdma_memtomem_dma1_channel1,RxBuffer,dma_rx,Uart1_Rx_Cnt);
+                                                   ^
+".\Core\Src\main.c", line 189: Error:  #167: argument of type "uint32_t *" is incompatible with parameter of type "uint32_t"
+        HAL_DMA_Start(&hdma_memtomem_dma1_channel1,RxBuffer,dma_rx,Uart1_Rx_Cnt);
+                                                            ^
+.\Core\Src\main.c: 0 warnings, 2 errors
+
+[2022-01-24 22:09:39]	compilation failed at : "e:\jiujiu\DMA\Core\Src\main.c", exit code: 1
+  at unify_builder.Program.compileByMulThread (System.Int32 thrNum, unify_builder.CmdGenerator+CmdInfo[] cmds, System.Collections.Generic.List`1[T] errLogs) [0x00104] in <67d11e1b30504dd6babd321425698ba1>:0 
+  at unify_builder.Program.Main (System.String[] args) [0x018f4] in <67d11e1b30504dd6babd321425698ba1>:0 
+---
+".\Core\Src\main.c", line 188: Error:  #167: argument of type "uint32_t *" is incompatible with parameter of type "uint32_t"
+        HAL_DMA_Start(&hdma_memtomem_dma1_channel1, (uint32_t *)RxBuffer, dma_rx, Uart1_Rx_Cnt);
+                                                    ^
+".\Core\Src\main.c", line 188: Error:  #167: argument of type "uint32_t *" is incompatible with parameter of type "uint32_t"
+        HAL_DMA_Start(&hdma_memtomem_dma1_channel1, (uint32_t *)RxBuffer, dma_rx, Uart1_Rx_Cnt);
+                                                                          ^
+.\Core\Src\main.c: 0 warnings, 2 errors
+
+[2022-01-24 22:09:51]	compilation failed at : "e:\jiujiu\DMA\Core\Src\main.c", exit code: 1
+  at unify_builder.Program.compileByMulThread (System.Int32 thrNum, unify_builder.CmdGenerator+CmdInfo[] cmds, System.Collections.Generic.List`1[T] errLogs) [0x00104] in <67d11e1b30504dd6babd321425698ba1>:0 
+  at unify_builder.Program.Main (System.String[] args) [0x018f4] in <67d11e1b30504dd6babd321425698ba1>:0 
+---
+".\Core\Src\main.c", line 188: Error:  #167: argument of type "uint32_t *" is incompatible with parameter of type "uint32_t"
+        HAL_DMA_Start(&hdma_memtomem_dma1_channel1, (uint32_t *)&RxBuffer, dma_rx, Uart1_Rx_Cnt);
+                                                    ^
+".\Core\Src\main.c", line 188: Error:  #167: argument of type "uint32_t *" is incompatible with parameter of type "uint32_t"
+        HAL_DMA_Start(&hdma_memtomem_dma1_channel1, (uint32_t *)&RxBuffer, dma_rx, Uart1_Rx_Cnt);
+                                                                           ^
+.\Core\Src\main.c: 0 warnings, 2 errors
+
+[2022-01-24 22:10:45]	compilation failed at : "e:\jiujiu\DMA\Core\Src\main.c", exit code: 1
+  at unify_builder.Program.compileByMulThread (System.Int32 thrNum, unify_builder.CmdGenerator+CmdInfo[] cmds, System.Collections.Generic.List`1[T] errLogs) [0x00104] in <67d11e1b30504dd6babd321425698ba1>:0 
+  at unify_builder.Program.Main (System.String[] args) [0x018f4] in <67d11e1b30504dd6babd321425698ba1>:0 
+---
+".\Core\Src\main.c", line 188: Error:  #167: argument of type "uint32_t *" is incompatible with parameter of type "uint32_t"
+        HAL_DMA_Start(&hdma_memtomem_dma1_channel1, (uint32_t )&RxBuffer, dma_rx, Uart1_Rx_Cnt);
+                                                                          ^
+.\Core\Src\main.c: 0 warnings, 1 error
+
+[2022-01-24 22:11:28]	[done]
+	build successfully !
+
