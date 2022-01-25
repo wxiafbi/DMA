@@ -29,14 +29,17 @@ extern "C" {
 #include "main.h"
 
 /* USER CODE BEGIN Includes */
-
+#include "dma.h"
 /* USER CODE END Includes */
 
 extern UART_HandleTypeDef huart1;
 extern UART_HandleTypeDef huart3;
 
 /* USER CODE BEGIN Private defines */
-
+extern uint8_t aRxBuffer;
+#define own 1
+#define DMA_RX_CNT 20
+#define RXBUFFERSIZE 256
 /* USER CODE END Private defines */
 
 void MX_USART1_UART_Init(void);

@@ -25,7 +25,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <string.h>
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -35,20 +35,12 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define own 1
-#define DMA_RX_CNT 20
-#define RXBUFFERSIZE 256
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-#if own
-char RxBuffer[RXBUFFERSIZE]; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-uint8_t aRxBuffer;           //ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶Ï»ï¿½ï¿½ï¿½
-uint8_t Uart1_Rx_Cnt = 0;    //ï¿½ï¿½ï¿½Õ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?
-#else
-uint8_t DMA_RX[100];
-#endif
+
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -56,10 +48,7 @@ uint8_t DMA_RX[100];
 /* USER CODE BEGIN PV */
 uint8_t pv[] = "xiaojiu\r\n";
 uint8_t pv1[] = "XIAOJIU\r\n";
-uint8_t dma_rx[RXBUFFERSIZE] = {0};
-uint8_t a = 51;
-uint8_t b = 9;
-uint32_t c;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -170,53 +159,6 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-#if own
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
-  /* Prevent unused argument(s) compilation warning */
-  UNUSED(huart);
-  /* NOTE: This function Should not be modified, when the callback is needed,
-           the HAL_UART_TxCpltCallback could be implemented in the user file
-   */
-
-  if (Uart1_Rx_Cnt >= 255)
-  {
-    Uart1_Rx_Cnt = 0;
-    memset(RxBuffer, 0x00, sizeof(RxBuffer));
-    HAL_UART_Transmit(&huart1, (uint8_t *)"Êý¾ÝÒç³ö", 10, 0xFFFF);
-  }
-  else
-  {
-    RxBuffer[Uart1_Rx_Cnt++] = aRxBuffer;
-
-    if ((RxBuffer[Uart1_Rx_Cnt - 1] == 0x0A) && (RxBuffer[Uart1_Rx_Cnt - 2] == 0x0D))
-    {
-      HAL_UART_Transmit(&huart1, (uint8_t *)&RxBuffer, Uart1_Rx_Cnt, 0xFFFF);
-      // HAL_DMA_Start(&hdma_memtomem_dma1_channel1, (uint32_t)&RxBuffer, (uint32_t)&dma_rx[Uart1_Rx_Cnt++], Uart1_Rx_Cnt);
-      // // printf("µ¹ÊýµÚÈý¸ö×Ö·ûÊÇ%c", dma_rx[Uart1_Rx_Cnt - 3]);
-      // for (size_t i = 0; i < Uart1_Rx_Cnt; i++)
-      // {
-      //   /* code */
-      //   printf("µÚ%d¸ö×Ö·ûÊÇ%c\r\n", i+1, dma_rx[i]);
-      // }
-      c = HAL_DMA_Start(&hdma_memtomem_dma1_channel1, (uint32_t)&a, (uint32_t)&b, sizeof(a));
-      printf("b=%d\r\n", b);
-      printf("DMA×´Ì¬%d", c);
-      while (HAL_UART_GetState(&huart1) == HAL_UART_STATE_BUSY_TX)
-        ;
-      Uart1_Rx_Cnt = 0;
-      memset(RxBuffer, 0x00, sizeof(RxBuffer));
-    }
-  }
-
-  HAL_UART_Receive_IT(&huart1, (uint8_t *)&aRxBuffer, 1);
-}
-#else
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
-  HAL_UART_Transmit_DMA(&huart1, DMA_RX, DMA_RX_CNT);
-}
-#endif
 
 /* USER CODE END 4 */
 

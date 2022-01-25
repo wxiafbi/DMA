@@ -708,3 +708,18 @@ Finished: 1 information, 0 warning and 1 error messages.
 [2022-01-25 20:09:31]	[done]
 	build successfully !
 
+[2022-01-25 20:51:40]	compilation failed at : "e:\jiujiu\DMA\Core\Src\main.c", exit code: 1
+  at unify_builder.Program.compileByMulThread (System.Int32 thrNum, unify_builder.CmdGenerator+CmdInfo[] cmds, System.Collections.Generic.List`1[T] errLogs) [0x00104] in <67d11e1b30504dd6babd321425698ba1>:0 
+  at unify_builder.Program.Main (System.String[] args) [0x018f4] in <67d11e1b30504dd6babd321425698ba1>:0 
+---
+".\Core\Src\main.c", line 99: Error:  #20: identifier "aRxBuffer" is undefined
+    HAL_UART_Receive_IT(&huart1, (uint8_t *)&aRxBuffer, 1);
+                                             ^
+.\Core\Src\main.c: 0 warnings, 1 error
+
+[2022-01-25 20:53:22]	[done]
+	build successfully !
+
+[2022-01-25 20:54:06]	[done]
+	build successfully !
+
