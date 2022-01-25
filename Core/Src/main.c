@@ -19,7 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "dma.h"
-#include "i2c.h"
+//#include "i2c.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -100,6 +100,7 @@ int main(void)
 #else
   HAL_UART_Receive_DMA(&huart1, DMA_RX, DMA_RX_CNT);
 #endif
+  HAL_UART_Receive_IT(&huart3, (uint8_t *)&Usart3_Rx, 1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -110,7 +111,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 #if own
-    //HAL_UART_Transmit(&huart1, pv, sizeof(pv), 0xffff);
+    HAL_UART_Transmit(&huart1, pv, sizeof(pv), 0xffff);
     HAL_Delay(1000);
 #else
     HAL_UART_Transmit_DMA(&huart1, pv1, sizeof(pv1));

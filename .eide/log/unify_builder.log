@@ -723,3 +723,87 @@ Finished: 1 information, 0 warning and 1 error messages.
 [2022-01-25 20:54:06]	[done]
 	build successfully !
 
+[2022-01-25 21:57:55]	compilation failed at : "e:\jiujiu\DMA\Core\Src\usart.c", exit code: 1
+  at unify_builder.Program.compileByMulThread (System.Int32 thrNum, unify_builder.CmdGenerator+CmdInfo[] cmds, System.Collections.Generic.List`1[T] errLogs) [0x00104] in <67d11e1b30504dd6babd321425698ba1>:0 
+  at unify_builder.Program.Main (System.String[] args) [0x018f4] in <67d11e1b30504dd6babd321425698ba1>:0 
+---
+".\Core\Src\usart.c", line 39: Error:  #148: variable "Usart3_RxCounter" has already been initialized
+  unsigned int Usart3_RxCounter = 0;      //???????????3????????????
+               ^
+.\Core\Src\usart.c: 0 warnings, 1 error
+
+[2022-01-25 21:58:23]	compilation failed at : "e:\jiujiu\DMA\Core\Src\usart.c", exit code: 1
+  at unify_builder.Program.compileByMulThread (System.Int32 thrNum, unify_builder.CmdGenerator+CmdInfo[] cmds, System.Collections.Generic.List`1[T] errLogs) [0x00104] in <67d11e1b30504dd6babd321425698ba1>:0 
+  at unify_builder.Program.Main (System.String[] args) [0x018f4] in <67d11e1b30504dd6babd321425698ba1>:0 
+---
+".\Core\Src\usart.c", line 39: Error:  #147: declaration is incompatible with "char Usart3_Rx" (declared at line 48 of ".\Core\Inc\usart.h")
+  unsigned int Usart3_Rx;      //???????????3????????????
+               ^
+.\Core\Src\usart.c: 0 warnings, 1 error
+
+[2022-01-25 22:00:43]	compilation failed at : "e:\jiujiu\DMA\Core\Src\usart.c", exit code: 1
+  at unify_builder.Program.compileByMulThread (System.Int32 thrNum, unify_builder.CmdGenerator+CmdInfo[] cmds, System.Collections.Generic.List`1[T] errLogs) [0x00104] in <67d11e1b30504dd6babd321425698ba1>:0 
+  at unify_builder.Program.Main (System.String[] args) [0x018f4] in <67d11e1b30504dd6babd321425698ba1>:0 
+---
+".\Core\Src\usart.c", line 39: Error:  #147: declaration is incompatible with "char Usart3_Rx" (declared at line 48 of ".\Core\Inc\usart.h")
+  uint8_t Usart3_Rx;                 //???????????3????????????
+          ^
+.\Core\Src\usart.c: 0 warnings, 1 error
+
+[2022-01-25 22:01:19]	compilation failed at : "e:\jiujiu\DMA\Core\Src\usart.c", exit code: 1
+  at unify_builder.Program.compileByMulThread (System.Int32 thrNum, unify_builder.CmdGenerator+CmdInfo[] cmds, System.Collections.Generic.List`1[T] errLogs) [0x00104] in <67d11e1b30504dd6babd321425698ba1>:0 
+  at unify_builder.Program.Main (System.String[] args) [0x018f4] in <67d11e1b30504dd6babd321425698ba1>:0 
+---
+".\Core\Src\usart.c", line 39: Error:  #147: declaration is incompatible with "char Usart3_Rx" (declared at line 48 of ".\Core\Inc\usart.h")
+  uint8_t Usart3_Rx;                 //???????????3????????????
+          ^
+.\Core\Src\usart.c: 0 warnings, 1 error
+
+[2022-01-25 22:02:12]	compilation failed at : "e:\jiujiu\DMA\Core\Src\usart.c", exit code: 1
+  at unify_builder.Program.compileByMulThread (System.Int32 thrNum, unify_builder.CmdGenerator+CmdInfo[] cmds, System.Collections.Generic.List`1[T] errLogs) [0x00104] in <67d11e1b30504dd6babd321425698ba1>:0 
+  at unify_builder.Program.Main (System.String[] args) [0x018f4] in <67d11e1b30504dd6babd321425698ba1>:0 
+---
+".\Core\Src\usart.c", line 39: Error:  #147: declaration is incompatible with "char Usart3_Rx" (declared at line 48 of ".\Core\Inc\usart.h")
+  uint8_t Usart3_Rx;                 //???????????3????????????
+          ^
+.\Core\Src\usart.c: 0 warnings, 1 error
+
+[2022-01-25 22:04:50]	compilation failed at : "e:\jiujiu\DMA\Core\Src\usart.c", exit code: 1
+  at unify_builder.Program.compileByMulThread (System.Int32 thrNum, unify_builder.CmdGenerator+CmdInfo[] cmds, System.Collections.Generic.List`1[T] errLogs) [0x00104] in <67d11e1b30504dd6babd321425698ba1>:0 
+  at unify_builder.Program.Main (System.String[] args) [0x018f4] in <67d11e1b30504dd6babd321425698ba1>:0 
+---
+".\Core\Src\usart.c", line 39: Error:  #148: variable "Usart3_RxCounter" has already been initialized
+  unsigned int Usart3_RxCounter = 0;      //???????????3????????????
+               ^
+.\Core\Src\usart.c: 0 warnings, 1 error
+
+[2022-01-25 22:05:35]	[done]
+	build successfully !
+
+[2022-01-25 23:09:08]	[done]
+	build successfully !
+
+[2022-01-25 23:14:11]	[done]
+	build successfully !
+
+[2022-01-25 23:48:00]	compilation failed at : "e:\jiujiu\DMA\Core\Src\usart.c", exit code: 1
+  at unify_builder.Program.compileByMulThread (System.Int32 thrNum, unify_builder.CmdGenerator+CmdInfo[] cmds, System.Collections.Generic.List`1[T] errLogs) [0x00104] in <67d11e1b30504dd6babd321425698ba1>:0 
+  at unify_builder.Program.Main (System.String[] args) [0x018f4] in <67d11e1b30504dd6babd321425698ba1>:0 
+---
+".\Core\Src\usart.c", line 368: Error:  #118: a void function may not return a value
+        if(a<=0)return 1;
+                       ^
+".\Core\Src\usart.c", line 369: Error:  #118: a void function may not return a value
+        return 0;
+               ^
+.\Core\Src\usart.c: 0 warnings, 2 errors
+
+[2022-01-25 23:49:04]	[done]
+	build successfully !
+
+[2022-01-25 23:53:12]	[done]
+	build successfully !
+
+[2022-01-25 23:55:14]	[done]
+	build successfully !
+

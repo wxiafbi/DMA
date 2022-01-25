@@ -95,8 +95,8 @@ void MX_GPIO_Init(void)
 /* USER CODE BEGIN 2 */
 void BEEP(int ms)
 {
-  HAL_GPIO_WritePin(GPIOB,BEEP_Pin,GPIO_PIN_SET);
-  HAL_Delay(ms);
   HAL_GPIO_WritePin(GPIOB,BEEP_Pin,GPIO_PIN_RESET);
+  HAL_Delay(ms);
+  HAL_GPIO_WritePin(GPIOB,BEEP_Pin,GPIO_PIN_SET);
 }
 /* USER CODE END 2 */
