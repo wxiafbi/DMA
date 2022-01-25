@@ -58,6 +58,7 @@ uint8_t pv1[] = "XIAOJIU\r\n";
 uint8_t dma_rx[RXBUFFERSIZE] = {0};
 uint8_t a = 51;
 uint8_t b = 9;
+uint32_t c;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -194,8 +195,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
       //   /* code */
       //   printf("µÚ%d¸ö×Ö·ûÊÇ%c\r\n", i+1, dma_rx[i]);
       // }
-      HAL_DMA_Start(&hdma_memtomem_dma1_channel1, (uint32_t)&a, (uint32_t)&b, sizeof(a));
-      printf("b=%d",b);
+      c = HAL_DMA_Start(&hdma_memtomem_dma1_channel1, (uint32_t)&a, (uint32_t)&b, sizeof(a));
+      printf("b=%d\r\n", b);
+      printf("DMA×´Ì¬%d", c);
       while (HAL_UART_GetState(&huart1) == HAL_UART_STATE_BUSY_TX)
         ;
       Uart1_Rx_Cnt = 0;
