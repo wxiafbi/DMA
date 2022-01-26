@@ -111,7 +111,14 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 #if own
-    HAL_UART_Transmit(&huart1, pv, sizeof(pv), 0xffff);
+    // HAL_UART_Transmit(&huart1, pv, sizeof(pv), 0xffff);
+    // HAL_Delay(1000);
+    
+    HAL_Delay(1000);
+    HAL_Delay(1000);
+    HAL_Delay(1000);
+    HAL_Delay(1000);
+    HAL_Delay(1000);
     HAL_Delay(1000);
 #else
     HAL_UART_Transmit_DMA(&huart1, pv1, sizeof(pv1));

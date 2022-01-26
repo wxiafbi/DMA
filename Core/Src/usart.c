@@ -290,15 +290,12 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef *uartHandle)
 }
 
 /* USER CODE BEGIN 1 */
-/**?????*/
-/**?????*/
+
 int fputc(int ch, FILE *f)
 {
   HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, 0xffff);
   return ch;
 }
-/**?????*/
-/**?????*/
 int fgetc(FILE *f)
 {
   uint8_t ch = 0;
@@ -315,7 +312,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
    */
   if (huart->Instance == USART1)
   {
-#if own
+
     if (Uart1_Rx_Cnt >= 255)
     {
       Uart1_Rx_Cnt = 0;
@@ -338,40 +335,50 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
         // }
         c = HAL_DMA_Start(&hdma_memtomem_dma1_channel1, (uint32_t)&a, (uint32_t)&b, sizeof(a));
         printf("b=%d\r\n", b);
-        printf("DMA??%d", c);
+        printf("DMA状态值%d", c);
         while (HAL_UART_GetState(&huart1) == HAL_UART_STATE_BUSY_TX)
           ;
         Uart1_Rx_Cnt = 0;
         memset(RxBuffer, 0x00, sizeof(RxBuffer));
       }
     }
-    BEEP(500);
-    HAL_GPIO_WritePin(GPIOB, RST_Pin, GPIO_PIN_SET);
-    HAL_Delay(500);
-    HAL_GPIO_WritePin(GPIOB, RST_Pin, GPIO_PIN_RESET);
     HAL_UART_Receive_IT(&huart1, (uint8_t *)&aRxBuffer, 1);
   }
-#else
-    HAL_UART_Transmit_DMA(&huart1, DMA_RX, DMA_RX_CNT);
-#endif
   if (huart->Instance == USART3)
   {
-    int a=30;
-    Usart3_RxBuff[Usart3_Rx++] = Usart3_Rx;
-    if(HAL_UART_GetState(&huart3) == HAL_UART_STATE_READY){
-      while (a--)
-      {
-        HAL_Delay(1000);
-        if(strstr(Usart3_RxBuff,"WH-GM5"))
-          break;
-        printf("%d",a);
-      }
-      if(a<=0)
-      printf("????\r\n");
+    char *d;
+    //printf("进入串口3中断\r\n");
+    if (Usart3_RxCounter >= 1024)
+    {
+      printf("进入if分支\r\n");
+      Usart3_RxCounter = 0;
+      memset(Usart3_RxBuff, 0x00, sizeof(Usart3_RxBuff));
+      HAL_UART_Transmit(&huart1, (uint8_t *)"数据溢出", 10, 0xFFFF);
     }
-    HAL_UART_Receive_IT(&huart3, (uint8_t *)&Usart3_Rx, 1);
+    else
+    {
+      Usart3_RxBuff[Usart3_RxCounter++] = Usart3_Rx;
+      if (strstr(Usart3_RxBuff, "WH-GM5"))
+      {
+        d = strstr(Usart3_RxBuff, "WH-GM5");
+        HAL_UART_Transmit(&huart1, (uint8_t *)&Usart3_RxBuff[0], 1, 0XFFFF);
+        HAL_UART_Transmit(&huart1, (uint8_t *)&Usart3_RxBuff[1], 1, 0XFFFF);
+        HAL_UART_Transmit(&huart1, (uint8_t *)&Usart3_RxBuff[2], 1, 0XFFFF);
+        HAL_UART_Transmit(&huart1, (uint8_t *)&Usart3_RxBuff[3], 1, 0XFFFF);
+        HAL_UART_Transmit(&huart1, (uint8_t *)&Usart3_RxBuff[4], 1, 0XFFFF);
+        HAL_UART_Transmit(&huart1, (uint8_t *)&Usart3_RxBuff[5], 1, 0XFFFF);
+        printf("\r\n Usart3_RxBuff首地址0x%p  0x%p  %d\r\n", &Usart3_RxBuff, d, Usart3_RxCounter);
+        HAL_UART_Transmit(&huart1, (uint8_t *)&Usart3_RxBuff, Usart3_RxCounter, 0xFFFF);
+        while (HAL_UART_GetState(&huart3) == HAL_UART_STATE_BUSY_TX)
+          ;
+        Usart3_RxCounter = 0;
+        memset(Usart3_RxBuff, 0x00, sizeof(Usart3_RxBuff));
+      }
+      //printf("开启串口3中断\r\n");
+      //HAL_Delay(10);
+      HAL_UART_Receive_IT(&huart3, (uint8_t *)&Usart3_Rx, 1);
+    }
   }
-  
 }
 
 /* USER CODE END 1 */
